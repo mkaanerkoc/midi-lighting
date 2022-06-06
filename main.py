@@ -10,6 +10,7 @@ from midi_message import (
 )
 
 from constants import (
+    POTENTIOMETER,
     START_BUTTON,
     STOP_BUTTON
 )
@@ -60,7 +61,7 @@ class Application(object):
     def _process_midi_message(self, message: MidiMessage):
         if message.note == 90:
             return Command(self._hue_bridge.set_light, light_id=1, parameter='bri', value=254)
-        if message.note == 7:
+        if message.note == POTENTIOMETER:
             _delta = self._potentiometer.get_delta_change(message)
             light_ids = [light.light_id for light in self._hue_bridge.lights]
             current_brightness = self._hue_bridge.lights[0].brightness
