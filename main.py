@@ -1,5 +1,3 @@
-import time
-
 from phue import Bridge
 from pygame import midi
 
@@ -49,7 +47,7 @@ class Application(object):
         print(f"HUE Bridge is connected successfully.")
         print(f"Current installed lights:")
         for light in self._hue_bridge.lights:
-            print(light.name, light.light_id)
+            print(f"Name: {light.name}, ID: {light.light_id}")
             light.brightness = 0
 
     def _setup_midi_device(self):
